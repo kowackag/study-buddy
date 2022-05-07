@@ -1,19 +1,21 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import UsersListItem from 'components/UsersListItem/UsersListItem';
+
+import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 
 import { users } from 'data/users';
 
+import { Wrapper, StyledList } from './UsersList.styled';
+
 const UsersList = () => {
   return (
-    <div>
-      <ul>
+    <Wrapper>
+      <StyledList>
         {users.map((userData) => (
           <UsersListItem userData={userData} />
         ))}
-      </ul>
-    </div>
+      </StyledList>
+    </Wrapper>
   );
 };
-UsersList.propTypes = {};
+
 export default UsersList;
