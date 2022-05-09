@@ -43,9 +43,15 @@ export const Average = styled.div`
     if (average <= 4) {
       return '#E1D888';
     }
-    if (average <= 5) {
+    if (Number(average) <= 5) {
       return `${theme.colors.success}`;
     }
+  }};
+  background: ${({ theme, average }) => {
+    if (average > 4) return theme.colors.success;
+    if (average > 3) return theme.colors.warning;
+    if (average > 2) return theme.colors.error;
+    return theme.colors.grey;
   }};
   font-size: ${({ theme }) => theme.fontSize.m};
   font-weight: bold;

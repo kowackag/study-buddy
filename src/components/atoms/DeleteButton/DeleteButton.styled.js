@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+const StyledDeleteButton = styled.button`
   width: 25px;
   height: 25px;
   border-radius: 12px;
@@ -15,4 +15,4 @@ const StyledButton = styled.button`
   }
 `;
 
-export default StyledButton;
+export default StyledDeleteButton;
