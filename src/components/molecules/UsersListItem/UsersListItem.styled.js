@@ -1,30 +1,5 @@
 import styled from 'styled-components';
 
-export const Average = styled.div`
-  padding: 10px 0;
-  margin-right: 24px;
-  width: 34px;
-  height: 34px;
-  border-radius: 25px;
-  background-color: ${({ average, theme }) => {
-    if (average < 3) {
-      return '#CB8581';
-    }
-    if (average <= 4) {
-      return '#E1D888';
-    }
-    if (average <= 5) {
-      return `${theme.colors.success}`;
-    }
-  }};
-  font-size: ${({ theme }) => theme.fontSize.m};
-  font-weight: bold;
-  letter-spacing: -5%;
-  line-height: 14px;
-  text-align: center;
-  color: white;
-`;
-
 export const Wrapper = styled.li`
   display: flex;
   align-items: center;
@@ -53,4 +28,29 @@ export const Wrapper = styled.li`
       margin-top: 0;
     }
   }
+`;
+
+export const Average = styled.div`
+  padding: 10px 0;
+  margin-right: 24px;
+  width: 34px;
+  height: 34px;
+  border-radius: 25px;
+  background-color: ${({ average, theme }) => {
+    if (average < 3) {
+      return '#CB8581';
+    }
+    if (average <= 4) {
+      return '#E1D888';
+    }
+    if (average <= 5) {
+      return `${theme.colors.success}`;
+    }
+  }};
+  font-size: ${({ theme }) => theme.fontSize.m};
+  font-weight: bold;
+  letter-spacing: -5%;
+  line-height: 14px;
+  text-align: center;
+  color: white;
 `;

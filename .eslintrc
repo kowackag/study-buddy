@@ -4,7 +4,7 @@
     "rules":{
         "prettier/prettier": ["warn", { 
             "singleQuote": true,
-            "printWith": 150
+            "printWith": 180
             }]
     },
     "env": {

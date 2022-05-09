@@ -3,12 +3,12 @@ import React from 'react';
 import StyledButton from './Button.styled';
 import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icons.svg';
 
-const name = () => {
+const Button = (props) => {
   return (
-    <StyledButton>
+    <StyledButton {...props}>
       <DeleteIcon />
     </StyledButton>
   );
 };
-name.propTypes = {};
-export default name;
+Button.propTypes = {};
+export default Button;

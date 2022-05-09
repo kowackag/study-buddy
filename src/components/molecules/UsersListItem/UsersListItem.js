@@ -5,7 +5,11 @@ import Button from 'components/atoms/Button/Button';
 
 import { Wrapper, Average } from './UsersListItem.styled.js';
 
-const UsersListItem = ({ userData: { name, average, attendance = '0%' } }) => {
+const UsersListItem = ({
+  deleteUser,
+  userData: { name, average, attendance = '0%' },
+}) => {
+  console.log(deleteUser);
   return (
     <Wrapper>
       <Average average={average}>{average}</Average>
@@ -13,7 +17,7 @@ const UsersListItem = ({ userData: { name, average, attendance = '0%' } }) => {
         <p>{name}</p>
         <p>{`attendance: ${attendance}`}</p>
       </div>
-      <Button />
+      <Button onClick={() => deleteUser(name)} />
     </Wrapper>
   );
 };
