@@ -4,8 +4,6 @@ const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
     html {
-        max-width:100vw;
-        font-size: 10px;
         box-sizing: border-box;
     }
 
@@ -14,13 +12,10 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        max-width: 1000px;
-        width:100%;
-        margin: auto;
+        max-height: 100vh;
         font-family: "Montserrat", Verdana, sans-serif;
-        font-size: 1.6rem;
-        color: rgb(var(--color-alfa));
-        line-height:1.5;
+        margin: 0;
+        padding: 0;
     }
 
     button, a {

@@ -1,76 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import UsersList from 'components/organisms/UsersList/UsersList';
-import { users as usersData } from 'data/users';
-import styled from 'styled-components';
-import Form from 'components/organisms/Form/Form';
-import Nav from 'components/molecules/Nav/Nav';
+import GlobalStyle from 'assets/styles/GlobalStyle';
 
-const Wrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f7f8fa;
-`;
+import { theme } from 'assets/styles/theme';
+import { ThemeProvider } from 'styled-components';
 
-function App() {
-  const initialFormData = {
-    name: '',
-    attendance: '',
-    average: '',
-  };
-  const [formValues, setFormValues] = useState(initialFormData);
-  const [users, setUsers] = useState(usersData);
-  const changeValue = (e) => {
-    const newUser = {
-      name: formValues.name,
-      attendance: formValues.attendance,
-      average: formValues.average,
-    };
-    setFormValues({ ...newUser, [e.target.name]: e.target.value });
-  };
+import Dashboard from './Dashboard';
+import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
+import { Wrapper } from './App.styled';
+import AddUser from 'views/AddUser';
+import UsersProvider from 'providers/UsersProvider';
 
-  const handleAddUser = (e) => {
-    e.preventDefault();
-
-    setUsers([...users, formValues]);
-    setFormValues({
-      name: '',
-      attendance: '',
-      average: '',
-    });
-  };
-
-  const deleteUser = (name) => {
-    const filteredUsers = users.filter((user) => user.name !== name);
-    setUsers(filteredUsers);
-  };
-
+const App = () => {
   return (
     <Router>
-      <Wrapper>
-        <Nav />
-        <Routes>
-          <Route
-            path="/*"
-            element={<UsersList users={users} deleteUser={deleteUser} />}
-          ></Route>
-          <Route
-            path="add-user"
-            element={
-              <Form
-                changeValue={changeValue}
-                handleAddUser={handleAddUser}
-                formValues={formValues}
-              />
-            }
-          ></Route>
-        </Routes>
-      </Wrapper>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <MainTemplate>
+          <UsersProvider>
+            <Wrapper>
+              <Routes>
+                <Route path="/*" element={<Dashboard />}></Route>
+                <Route path="add-user" element={<AddUser />}></Route>
+              </Routes>
+            </Wrapper>
+          </UsersProvider>
+        </MainTemplate>
+      </ThemeProvider>
     </Router>
   );
-}
+};
 
 export default App;
