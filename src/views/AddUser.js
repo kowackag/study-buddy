@@ -1,34 +1,40 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import FormField from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
 import { Title } from 'components/atoms/Title/Title';
 import { UserContext } from 'providers/UsersProvider';
+import useForm from 'hooks/useForm';
 
 const AddUser = () => {
   const initialFormData = {
     name: '',
     attendance: '',
     average: '',
+    consent: false,
+    error: '',
   };
-  const [formValues, setFormValues] = useState(initialFormData);
-  const context = useContext(UserContext);
 
-  const changeValue = (e) => {
-    const newUser = {
-      name: formValues.name,
-      attendance: formValues.attendance,
-      average: formValues.average,
-    };
-    setFormValues({ ...newUser, [e.target.name]: e.target.value });
-  };
+  const context = useContext(UserContext);
+  const {
+    formValues,
+    handleInputChange,
+    handleReset,
+    handleError,
+    handleToogleConsent,
+  } = useForm(initialFormData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    context.handleAddUser(formValues);
-    setFormValues(initialFormData);
+    if (formValues.consent) {
+      context.handleAddUser(formValues);
+      handleReset();
+    } else {
+      handleError('Check consent');
+    }
   };
+
   return (
     <ViewWrapper as="form" onSubmit={handleSubmit}>
       <Title>Add new student</Title>
@@ -37,23 +43,31 @@ const AddUser = () => {
         label="Name"
         id="name"
         name="name"
-        onChange={changeValue}
+        onChange={(e) => handleInputChange(e.target)}
       />
       <FormField
         value={formValues.attendance}
         label="Attendance"
         id="attendance"
         name="attendance"
-        onChange={changeValue}
+        onChange={(e) => handleInputChange(e.target)}
       />
       <FormField
         value={formValues.average}
         label="Average"
         id="average"
         name="average"
-        onChange={changeValue}
+        onChange={(e) => handleInputChange(e.target)}
+      />
+      <FormField
+        label="Consent"
+        id="consent"
+        name="consent"
+        type="checkbox"
+        onChange={() => handleToogleConsent()}
       />
       <Button type="submit">Add</Button>
+      {formValues.error ? <p>{formValues.error}</p> : null}
     </ViewWrapper>
   );
 };

@@ -22,8 +22,7 @@ const UsersListItem = ({ userData: { name, average, attendance = '0%' } }) => {
 };
 
 UsersListItem.propTypes = {
-  userData: PropTypes.shape(UserShape),
-  deleteUser: PropTypes.func.isRequired,
+  userData: PropTypes.shape(UserShape)
 };
 
 export default UsersListItem;
