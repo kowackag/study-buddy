@@ -14,6 +14,7 @@ describe('Form Field', () => {
       </>
     );
     userEvent.type(screen.getByLabelText('Name'), 'Gosia');
+    userEvent.type(screen.getByLabelText('Consent'));
     userEvent.type(screen.getByText('Add'));
     expect(screen.getByText('Gosia')).toBeInTheDocument();
   });
@@ -29,6 +30,7 @@ describe('Form Field', () => {
     fireEvent.change(screen.getByTestId('name'), {
       target: { value: 'Gosi' },
     });
+    fireEvent.click(screen.getByLabelText('Consent'));
     fireEvent.click(screen.getByText('Add'));
     expect(screen.getByText('Gosi')).toBeInTheDocument();
   });

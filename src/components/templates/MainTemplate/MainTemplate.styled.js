@@ -11,4 +11,5 @@ export const Wrapper = styled.div`
   padding: 0;
   display: grid;
   background-color: ${({ theme }) => theme.colors.lightGrey};
+  overflow-y: hidden;
 `;
