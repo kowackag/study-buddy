@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { users as usersData } from 'data/users';
+import React, { useState, useEffect } from 'react';
+// import { users } from 'data/users';
+import axios from 'axios';
 
 export const UserContext = React.createContext({
   users: [],
@@ -8,7 +9,14 @@ export const UserContext = React.createContext({
 });
 
 const UsersProvider = ({ children }) => {
-  const [users, setUsers] = useState(usersData);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('/students')
+      .then(({ data }) => setUsers(data.students))
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleAddUser = (formValues) => {
     setUsers([...users, formValues]);
