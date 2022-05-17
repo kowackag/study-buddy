@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from 'react-router-dom';
 import GlobalStyle from 'assets/styles/GlobalStyle';
 
 import { theme } from 'assets/styles/theme';
@@ -17,14 +22,19 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <MainTemplate>
-          <UsersProvider>
-            <Wrapper>
-              <Routes>
-                <Route path="/*" element={<Dashboard />}></Route>
-                <Route path="add-user" element={<AddUser />}></Route>
-              </Routes>
-            </Wrapper>
-          </UsersProvider>
+          {/* <UsersProvider> */}
+          <Wrapper>
+            <Routes>
+              <Route path="/dashboard/:id" element={<Dashboard />}/>
+              <Route path="add-user" element={<AddUser />}></Route>
+              <Route
+                exact
+                path="/"
+                element={<Navigate to="/dashboard/A" replace={true} />}
+              />
+            </Routes>
+          </Wrapper>
+          {/* </UsersProvider> */}
         </MainTemplate>
       </ThemeProvider>
     </Router>
