@@ -25,13 +25,10 @@ const App = () => {
           {/* <UsersProvider> */}
           <Wrapper>
             <Routes>
-              <Route path="/dashboard/:id" element={<Dashboard />}/>
+              <Route path="/dashboard/:id" element={<Dashboard />} />
+              <Route path="/dashboard/*" element={<Dashboard />} />
               <Route path="add-user" element={<AddUser />}></Route>
-              <Route
-                exact
-                path="/"
-                element={<Navigate to="/dashboard/A" replace={true} />}
-              />
+              <Route exact path="/" element={<Navigate to="/dashboard/A" />} />
             </Routes>
           </Wrapper>
           {/* </UsersProvider> */}

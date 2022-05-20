@@ -12,7 +12,7 @@ const Nav = () => {
           Buddy
         </h1>
       </Logo>
-      <StyledLink to="/dashboard/A">DashBoard</StyledLink>
+      <StyledLink to="/dashboard">DashBoard</StyledLink>
       <StyledLink to="add-user">Add User</StyledLink>
       <StyledLink to="/*">Settings</StyledLink>
       <StyledLink to="/*">Logout</StyledLink>

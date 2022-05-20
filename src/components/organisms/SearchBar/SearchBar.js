@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import StyledSearchBar from './SearchBar.styled';
-import FormField from '../../molecules/FormField/FormField';
+import StyledSearchBar, { FieldWrapper } from './SearchBar.styled';
+
 import { Input } from 'components/atoms/Input/Input.styled';
+import { useStudents } from 'hooks/useStudents';
+import SearchResult from 'components/molecules/SearchResult/SearchResult';
 
 const SearchBar = () => {
-  const [text, setText] = useState();
+  const [text, setText] = useState('');
+  const { allStudents } = useStudents();
+
+  const matchingStudents = allStudents.filter(({ name }) =>
+    name.toLowerCase().includes(text.toLowerCase())
+  );
 
   return (
     <StyledSearchBar>
@@ -16,7 +23,16 @@ const SearchBar = () => {
           <strong>Teacher</strong>
         </p>
       </div>
-      <Input />
+      <FieldWrapper>
+        <Input onChange={(e) => setText(e.target.value)} />
+        {text && matchingStudents.length > 0 && (
+          <SearchResult>
+            {matchingStudents.map((item) => (
+              <li key={item.id}>{item.name}</li>
+            ))}
+          </SearchResult>
+        )}{' '}
+      </FieldWrapper>
     </StyledSearchBar>
   );
 };
