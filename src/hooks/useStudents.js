@@ -28,5 +28,5 @@ export const useStudents = ({ id = '' } = {}) => {
       .catch((err) => console.log(err));
   }, [id, groups]);
 
-  return { allStudents, students, groups};
+  return { allStudents, students, groups };
 };

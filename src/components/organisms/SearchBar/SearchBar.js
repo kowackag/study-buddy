@@ -10,7 +10,7 @@ import SearchResult from 'components/molecules/SearchResult/SearchResult';
 const SearchBar = () => {
   const [text, setText] = useState('');
   const { allStudents } = useStudents();
-
+  console.log(allStudents);
   const matchingStudents = allStudents.filter(({ name }) =>
     name.toLowerCase().includes(text.toLowerCase())
   );
