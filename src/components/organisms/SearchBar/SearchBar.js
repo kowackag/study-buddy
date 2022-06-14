@@ -57,9 +57,9 @@ const SearchBar = () => {
           name="search"
           id="search"
         />
-        <StyledSearchResult {...getMenuProps()}>
-          {isOpen &&
-            matchingStudents.map((item, index) => (
+        {isOpen && (
+          <StyledSearchResult {...getMenuProps()} aria-label="results">
+            {matchingStudents.map((item, index) => (
               <StyledSearchResultItem
                 isHighlighted={highlightedIndex === index}
                 {...getItemProps({ item, index })}
@@ -68,7 +68,8 @@ const SearchBar = () => {
                 {item.name}
               </StyledSearchResultItem>
             ))}
-        </StyledSearchResult>
+          </StyledSearchResult>
+        )}
       </FieldWrapper>
     </StyledSearchBar>
   );
