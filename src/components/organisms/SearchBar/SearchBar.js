@@ -9,6 +9,7 @@ import {
 
 import StyledSearchBar, { FieldWrapper } from './SearchBar.styled';
 import { Input } from 'components/atoms/Input/Input.styled';
+import SearchResult from 'components/molecules/SearchResult/SearchResult';
 
 const SearchBar = () => {
   const [allStudents, setAllStudents] = useState([]);
@@ -40,7 +41,7 @@ const SearchBar = () => {
       );
     },
   });
-  
+
   return (
     <StyledSearchBar>
       <div>
@@ -50,7 +51,12 @@ const SearchBar = () => {
         </p>
       </div>
       <FieldWrapper {...getComboboxProps()}>
-        <Input {...getInputProps()} name="search" id="search" />
+        <Input
+          {...getInputProps()}
+          placeholder="Search"
+          name="search"
+          id="search"
+        />
         <StyledSearchResult {...getMenuProps()}>
           {isOpen &&
             matchingStudents.map((item, index) => (
