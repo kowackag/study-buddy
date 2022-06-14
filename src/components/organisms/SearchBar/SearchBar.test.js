@@ -1,4 +1,4 @@
-import { render, screen } from 'test-utils';
+import { render, screen, waitFor } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 import { setupServer } from 'msw/node';
 import { handler } from 'mocks/handler';
@@ -23,10 +23,18 @@ describe('SearchBar', () => {
     expect(input.value).toBe('ka');
   });
 
-  it('Display value of input', () => {
+  it('Display value of input', async () => {
     render(<SearchBar />);
     const input = screen.getByPlaceholderText('Search');
     userEvent.type(input, 'ka');
-    expect(input.value).toBe('ka');
+    await waitFor(() => {
+      const results = screen.getByLabelText('results');
+      expect(results).toBeInTheDocument();
+    });
+    userEvent.type(input, '');
+    await waitFor(() => {
+      const results = screen.getByLabelText('results');
+      expect(results).not.toBeInTheDocument();
+    });
   });
 });
