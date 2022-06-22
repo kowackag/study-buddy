@@ -9,7 +9,7 @@ import {
 
 import StyledSearchBar, { FieldWrapper } from './SearchBar.styled';
 import { Input } from 'components/atoms/Input/Input.styled';
-import SearchResult from 'components/molecules/SearchResult/SearchResult';
+// import SearchResult from 'components/molecules/SearchResult/SearchResult';
 
 const SearchBar = () => {
   const [allStudents, setAllStudents] = useState([]);
@@ -57,9 +57,9 @@ const SearchBar = () => {
           name="search"
           id="search"
         />
-        {isOpen && (
-          <StyledSearchResult {...getMenuProps()} aria-label="results">
-            {matchingStudents.map((item, index) => (
+        <StyledSearchResult {...getMenuProps()} aria-label="results">
+          {isOpen &&
+            matchingStudents.map((item, index) => (
               <StyledSearchResultItem
                 isHighlighted={highlightedIndex === index}
                 {...getItemProps({ item, index })}
@@ -68,8 +68,7 @@ const SearchBar = () => {
                 {item.name}
               </StyledSearchResultItem>
             ))}
-          </StyledSearchResult>
-        )}
+        </StyledSearchResult>
       </FieldWrapper>
     </StyledSearchBar>
   );

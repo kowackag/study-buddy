@@ -34,7 +34,7 @@ describe('SearchBar', () => {
     userEvent.type(input, '');
     await waitFor(() => {
       const results = screen.getByLabelText('results');
-      expect(results).not.toBeInTheDocument();
+      expect(results).not.toContain('ka');
     });
   });
 });
