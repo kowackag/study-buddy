@@ -14,7 +14,7 @@ import Dashboard from './Dashboard';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import { Wrapper } from './App.styled';
 import AddUser from 'views/AddUser';
-import UsersProvider from 'providers/UsersProvider';
+import Modal from 'components/organisms/Modal/Modal';
 
 const App = () => {
   return (
@@ -22,7 +22,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <MainTemplate>
-          {/* <UsersProvider> */}
+          <Modal />
           <Wrapper>
             <Routes>
               <Route path="/dashboard/:id" element={<Dashboard />} />
@@ -31,7 +31,6 @@ const App = () => {
               <Route exact path="/" element={<Navigate to="/dashboard/A" />} />
             </Routes>
           </Wrapper>
-          {/* </UsersProvider> */}
         </MainTemplate>
       </ThemeProvider>
     </Router>
