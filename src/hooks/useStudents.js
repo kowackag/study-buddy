@@ -1,32 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useCallback } from 'react';
 import axios from 'axios';
 
-export const useStudents = ({ id = '' } = {}) => {
-  const [students, setStudents] = useState([]);
-  const [allStudents, setAllStudents] = useState([]);
-  const [groups, setGroups] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(`/groups`)
-      .then(({ data }) => setGroups(data.groups))
-      .catch((err) => console.log(err));
+export const useStudents = () => {
+  const getGroups = useCallback(async () => {
+    try {
+      const result = await axios.get('/groups');
+      return result.data.groups;
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(`/students`)
-      .then(({ data }) => setAllStudents(data.students))
-      .catch((err) => console.log(err));
+  const getStudents = useCallback(async (groupId) => {
+    try {
+      const result = await axios.get(`/students/${groupId}`);
+      return result.data.students;
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
-  useEffect(() => {
-    if (!id) return;
-    axios
-      .get(`/students/${id}`)
-      .then(({ data }) => setStudents(data.students))
-      .catch((err) => console.log(err));
-  }, [id, groups]);
+  const getAllStudents = useCallback(async () => {
+    try {
+      const result = await axios.get(`/students`);
+      return result.data.students;
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
 
-  return { allStudents, students, groups };
+  return { getAllStudents, getStudents, getGroups };
 };

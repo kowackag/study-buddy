@@ -1,7 +1,8 @@
 import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
-import NewsSection from './NewsSection';
+import NewsSection, { query } from './NewsSection';
 import { renderWithProviders } from 'helpers/renderWithProviders';
+import MockAdapter from 'axios-mock-adapter';
 
 describe('NewsSection', () => {
   it('loading articles', async () => {

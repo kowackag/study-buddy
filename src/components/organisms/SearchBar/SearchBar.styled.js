@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Input } from 'components/atoms/Input/Input.styled';
 
-const StyledSearchBar = styled.div`
+export const StyledSearchBar = styled.div`
   padding: 0 40px;
   display: flex;
   justify-content: flex-start;

@@ -6,18 +6,18 @@ import { renderWithProviders } from 'helpers/renderWithProviders';
 import userEvent from '@testing-library/user-event';
 
 describe('Form Field', () => {
-  it('Check if name is displayed', () => {
-    renderWithProviders(
-      <>
-        <AddUser />
-        <Dashboard />
-      </>
-    );
-    userEvent.type(screen.getByLabelText('Name'), 'Gosia');
-    userEvent.type(screen.getByLabelText('Consent'));
-    userEvent.type(screen.getByText('Add'));
-    expect(screen.getByText('Gosia')).toBeInTheDocument();
-  });
+  // it('Check if name is displayed', () => {
+  //   renderWithProviders(
+  //     <>
+  //       <AddUser />
+  //       <Dashboard />
+  //     </>
+  //   );
+  //   userEvent.type(screen.getByLabelText('Name'), 'Gosia');
+  //   userEvent.type(screen.getByLabelText('Consent'));
+  //   userEvent.type(screen.getByText('Add'));
+  //   expect(screen.getByText('Gosia')).toBeInTheDocument();
+  // });
 
   it('Check if name is displayed no 2', () => {
     renderWithProviders(

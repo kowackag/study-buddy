@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+
 import {
   ContentWrapper,
   StyledNewsSection,
@@ -10,38 +10,47 @@ import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
 import { Button } from 'components/atoms/Button/Button';
 
 import axios from 'axios';
+
+export const query = `
+         {
+          allArticles {
+            id
+            title
+            category
+            content
+            image {
+              url
+            }
+          }
+        }
+      `;
+
 const key = 'e3f5316d59aa8455911f0b5948de5a';
 
 // const key = process.env.REACT_APP_DATOCMS_TOKEN
 console.log(process.env.REACT_APP_DATOCMS_TOKEN);
 const NewsSection = () => {
+  const [error, setError] = useState('');
   const [articles, setArticles] = useState([]);
   useEffect(() => {
-    console.log(process.env.REACT_APP_DATOCMS_TOKEN);
     axios
       .post(
         'https://graphql.datocms.com/',
         {
-          query: `{
-      allArticles {
-        id
-        title
-        category
-        content
-        image {
-          url
-        }
-      }
-    }`,
+          query,
         },
         {
           headers: {
-            Authorization: `Bearer ${key}`,
+            authorization: `Bearer ${key}`,
           },
         }
       )
-      .then(({ data: { data } }) => setArticles(data.allArticles))
-      .catch((err) => console.log(err));
+      .then(({ data: { data } }) => {
+        setArticles(data.allArticles);
+      })
+      .catch(() => {
+        setError(`Sorry, we couldn't load articles for you`);
+      });
   }, []);
 
   return (
@@ -62,10 +71,10 @@ const NewsSection = () => {
           </ViewWrapper>
         ))
       ) : (
-        <h4>Loading...</h4>
+        <h4>{error ? error : 'Loading...'}</h4>
       )}
     </StyledNewsSection>
   );
 };
-NewsSection.propTypes = {};
+
 export default NewsSection;

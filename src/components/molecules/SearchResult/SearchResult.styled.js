@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledSearchResult = styled.ul`
+export const StyledSearchResult = styled.ul`
   position: absolute;
   margin: 0 0 0 20px;
   padding: 0;
@@ -14,14 +14,16 @@ const StyledSearchResult = styled.ul`
   font-weight: bold;
   font-size: ${({ theme }) => theme.fontSize.s};
   overflow-y: scroll;
+`;
 
-  & :not(:last-child) {
+export const StyledSearchResultItem = styled.li`
+  padding: 0.4rem;
+  cursor: pointer;
+  background-color: ${({ theme, isHighlighted }) =>
+    isHighlighted ? theme.colors.lightPurple : 'white'};
+  :not(:last-child) {
     border-bottom: 1px solid ${({ theme }) => theme.colors.darkPurple};
   }
-
-  & li {
-    padding: 0.4rem;
-    cursor: pointer;
-  }
 `;
+
 export default StyledSearchResult;

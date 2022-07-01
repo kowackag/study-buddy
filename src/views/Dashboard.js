@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 
 import { useStudents } from 'hooks/useStudents';
@@ -9,8 +9,16 @@ import DashboardHeader from 'components/molecules/DashboardHeader/DashboardHeade
 import { Title } from 'components/atoms/Title/Title';
 
 const Dashboard = () => {
+  const [groups, setGroups] = useState([]);
   const { id } = useParams();
-  const { groups } = useStudents();
+  const { getGroups } = useStudents();
+
+  useEffect(() => {
+    (async () => {
+      const groups = await getGroups();
+      setGroups(groups);
+    })();
+  }, [getGroups]);
 
   if (!id && groups.length > 0)
     return <Navigate to={`/dashboard/${groups[0]}`} />;
