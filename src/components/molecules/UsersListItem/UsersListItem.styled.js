@@ -5,6 +5,7 @@ export const Wrapper = styled.li`
   align-items: center;
   position: relative;
   color: #737c8e;
+  cursor: pointer;
 
   &:not(:last-child)::after {
     content: '';

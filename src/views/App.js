@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Navigate,
@@ -17,12 +17,14 @@ import AddUser from 'views/AddUser';
 import Modal from 'components/organisms/Modal/Modal';
 
 const App = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <MainTemplate>
-          <Modal />
+          {/* <Modal /> */}
           <Wrapper>
             <Routes>
               <Route path="/dashboard/:id" element={<Dashboard />} />

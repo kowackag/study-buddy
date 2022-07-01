@@ -6,7 +6,7 @@ import { StyledList } from './UsersList.styled';
 import { Title } from 'components/atoms/Title/Title';
 import { useStudents } from 'hooks/useStudents';
 
-const UsersList = () => {
+const UsersList = ({ handleISOpenStudentsDetails }) => {
   const [students, setStudents] = useState([]);
   const { id } = useParams();
   const { getStudents } = useStudents();
@@ -23,7 +23,11 @@ const UsersList = () => {
       <StyledList>
         {students &&
           students.map((userData) => (
-            <UsersListItem key={userData.name} userData={userData} />
+            <UsersListItem
+              key={userData.name}
+              userData={userData}
+              onClick={() => handleISOpenStudentsDetails(userData.id)}
+            />
           ))}
       </StyledList>
     </>

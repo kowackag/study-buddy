@@ -7,10 +7,13 @@ import { Wrapper, Average } from './UsersListItem.styled.js';
 import { UserShape } from 'types/index.js';
 import { UserContext } from 'providers/UsersProvider';
 
-const UsersListItem = ({ userData: { name, average, attendance = '0%' } }) => {
+const UsersListItem = ({
+  userData: { name, average, attendance = '0%' },
+  ...props
+}) => {
   const { deleteUser } = useContext(UserContext);
   return (
-    <Wrapper>
+    <Wrapper {...props}>
       <Average average={average}>{average}</Average>
       <div>
         <p>{name}</p>
@@ -22,7 +25,7 @@ const UsersListItem = ({ userData: { name, average, attendance = '0%' } }) => {
 };
 
 UsersListItem.propTypes = {
-  userData: PropTypes.shape(UserShape)
+  userData: PropTypes.shape(UserShape),
 };
 
 export default UsersListItem;
