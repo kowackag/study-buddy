@@ -11,6 +11,8 @@ import { Button } from 'components/atoms/Button/Button';
 
 import axios from 'axios';
 const key = 'e3f5316d59aa8455911f0b5948de5a';
+
+// const key = process.env.REACT_APP_DATOCMS_TOKEN
 console.log(process.env.REACT_APP_DATOCMS_TOKEN);
 const NewsSection = () => {
   const [articles, setArticles] = useState([]);
@@ -34,7 +36,7 @@ const NewsSection = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_DATOCMS_TOKEN}`,
+            Authorization: `Bearer ${key}`,
           },
         }
       )
